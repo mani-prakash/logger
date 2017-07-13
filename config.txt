@@ -1,0 +1,11 @@
+ts_format:yyyy-MM-dd HH:mm:ss
+log_level:ERROR
+class_name:sinks.FileSink
+sink_type:FILE
+file_location:logs.txt
+thread_model:SYNC
+ts_format:yyyy/MM/dd HH:mm:ss
+log_level:INFO
+class_name:sinks.ConsoleSink
+sink_type:console
+thread_model:MULTI

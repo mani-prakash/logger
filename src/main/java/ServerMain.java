@@ -8,7 +8,7 @@ public class ServerMain
     public static void main(String args[]) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, InterruptedException
     {
         Logger logger = new Logger();
-        //LoggerHandler loggerHandler = new LoggerHandler()
-        logger.start();
+        LoggerHandler loggerHandler = new LoggerHandler( "config.txt", logger);
+        loggerHandler.startLogger();
     }
 }

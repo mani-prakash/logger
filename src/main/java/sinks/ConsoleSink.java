@@ -7,6 +7,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 
 public class ConsoleSink extends Sink
@@ -17,9 +18,17 @@ public class ConsoleSink extends Sink
 
     public ConsoleSink(HashMap<String, String> config) {
         super(config);
-//        FILENAME = config.get("file_location") ;
-        FILENAME = "/Users/codedog29/Code/office/logger/fs.txt" ;
         init();
+    }
+
+    public String getLogAsString(Log log)
+    {
+        return "Log{" +
+                "content='" + log.getContent() + '\'' +
+                ", namespace='" + log.getNamespace() + '\'' +
+                ", timeStamp=" + this.dateFormater.format(new Date(log.getTimeStamp())).toString() +
+                ", level=" + log.getLevel() +
+                '}';
     }
 
     @Override

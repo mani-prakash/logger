@@ -29,16 +29,6 @@ public class Logger implements  ITaskHandler{
         sinkMap = new HashMap() ;
         sinks = new HashMap<String, Sink>();
         threadMap = new HashMap<Level, ExecutorService>();
-        addConsoleSink();
-        setDefaultSink("console");
-        EventBus eventBus = new EventBus();
-        queue.startListening(this);
-        //sinkMap.put(Level.valueOf("INFO"), (Sink) Class.forName("sinks.FileSink").getConstructor(HashMap.class).newInstance(new HashMap())) ;
-    }
-
-    public void addConsoleSink()
-    {
-        sinks.put("console", new ConsoleSink(new HashMap<String, String>()));
     }
 
     public boolean setDefaultSink(String sink)
@@ -62,12 +52,13 @@ public class Logger implements  ITaskHandler{
 
     public void addSink(String sinkType, Sink sink)
     {
+        System.out.println(sinkType + " : " + sink);
         sinks.put(sinkType, sink);
     }
-    public void setLevelSink(Level level, String sinkType, boolean isAsync)
+    public void setLevelSink(Level level, String sinkType, boolean isMulti)
     {
         sinkMap.put(level, sinkType);
-        if( isAsync )
+        if( isMulti )
         {
             threadMap.put(level, Executors.newCachedThreadPool());
         }
@@ -77,7 +68,7 @@ public class Logger implements  ITaskHandler{
     }
 
     public void start() throws InterruptedException {
-
+        queue.startListening(this);
     }
 
     public void processLog(final Log log)

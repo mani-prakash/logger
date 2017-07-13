@@ -2,8 +2,10 @@ package models;
 
 import server.Level;
 
+import java.util.Date;
+
 public class Log {
-    private String content, namespace ;
+    private String content, namespace;
     private long timeStamp;
     private Level level;
 
@@ -60,7 +62,7 @@ public class Log {
         return "Log{" +
                 "content='" + content + '\'' +
                 ", namespace='" + namespace + '\'' +
-                ", timeStamp=" + timeStamp +
+                ", timeStamp=" + new Date(timeStamp).toString() +
                 ", level=" + level +
                 '}';
     }

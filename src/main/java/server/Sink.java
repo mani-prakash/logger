@@ -1,20 +1,32 @@
 package server;
 
+import Utils.Constants;
 import models.Log;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
-public abstract class Sink extends Thread{
+public abstract class Sink{
 
-    HashMap<String ,String> config = null;
+    public HashMap<String ,String> config = null;
+    public Format dateFormater;
 
     public Sink(HashMap<String ,String> config) {
+        String dateFormat = Constants.defalutDateFormat;
         this.config = config ;
+        if(config.containsKey("ts_format")) dateFormat = config.get("ts_format");
+        setDateFormat(dateFormat);
     }
 
     public void addProperty(String key, String value)
     {
         config.put(key, value);
+    }
+
+    public void setDateFormat(String dataFormat)
+    {
+        dateFormater = new SimpleDateFormat(dataFormat);
     }
 
     public String getProperty(String key)

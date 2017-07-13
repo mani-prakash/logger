@@ -7,6 +7,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 
 public class FileSink extends Sink
@@ -24,7 +25,7 @@ public class FileSink extends Sink
 
         try {
 
-            File file = new File(getProperty("FILE_LOCATION"));
+            File file = new File(getProperty("file_location"));
 
             // if file doesnt exists, then create it
             if (!file.exists()) {
@@ -40,12 +41,22 @@ public class FileSink extends Sink
         }
     }
 
+    public String getLogAsString(Log log)
+    {
+        return "Log{" +
+                "content='" + log.getContent() + '\'' +
+                ", namespace='" + log.getNamespace() + '\'' +
+                ", timeStamp=" + this.dateFormater.format(new Date(log.getTimeStamp())).toString() +
+                ", level=" + log.getLevel() +
+                '}';
+    }
+
     @Override
     public void writeMessage(Log log) {
 
         while (true) {
             try {
-                bw.write(log.toString() + "\n");
+                bw.write(getLogAsString(log) + "\n");
                 bw.flush();
                 return;
             } catch (IOException e) {
