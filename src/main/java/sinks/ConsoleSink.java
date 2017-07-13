@@ -12,9 +12,6 @@ import java.util.HashMap;
 
 public class ConsoleSink extends Sink
 {
-    private String FILENAME;
-    BufferedWriter bw;
-    FileWriter fw;
 
     public ConsoleSink(HashMap<String, String> config) {
         super(config);
@@ -37,6 +34,6 @@ public class ConsoleSink extends Sink
 
     @Override
     public void writeMessage(Log log) {
-        System.out.println(log.toString());
+        System.out.println(getLogAsString(log));
     }
 }

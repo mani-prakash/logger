@@ -15,7 +15,10 @@ public abstract class Sink{
     public Sink(HashMap<String ,String> config) {
         String dateFormat = Constants.defalutDateFormat;
         this.config = config ;
-        if(config.containsKey("ts_format")) dateFormat = config.get("ts_format");
+        if(config.containsKey(Constants.time_format)) {
+            System.out.println( "date format :" + config.get(Constants.time_format));
+            dateFormat = config.get(Constants.time_format);
+        }
         setDateFormat(dateFormat);
     }
 
