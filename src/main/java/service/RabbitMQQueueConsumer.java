@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RabbitMQQueueConsumer implements IQueueConsumer
+public class RabbitMQQueueConsumer
 {
     private Connection _connection;
     private List<Channel> _channels;

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RabbitMQ implements IQueue
+public class RabbitMQ
 {
     private final String _queueName;
     private Connection _connection;

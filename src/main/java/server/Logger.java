@@ -2,12 +2,8 @@ package server;
 
 
 import Utils.Constants;
-import com.google.common.eventbus.EventBus;
 import models.Log;
-import service.IQueueConsumer;
 import service.RabbitMQQueueConsumer;
-import sinks.ConsoleSink;
-import sinks.FileSink;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
